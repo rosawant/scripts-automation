@@ -1,0 +1,14 @@
+#!/bin/bash
+#example of disk space check
+
+#set variable
+CURRENT=`df -T /|grep /|awk '{print $6 "  " $7}'|cut -d "%" -f1'
+THREASHOLD=90
+
+if[ $CURRENT -gt $THREASHOLD ]
+then
+
+echo Disk is in CRITICAL state $CURRENT% used
+else
+echo Disk is OK now!!!
+fi
