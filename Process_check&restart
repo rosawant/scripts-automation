@@ -1,0 +1,12 @@
+#!/bin/bash
+#restarting services
+
+process=`ps auxwww | grep java | grep -v grep | awk '{print $2}'`
+if [ -z "$process" ]; then
+
+echo "Tomcat is not  running. Restarting..."
+echo && date
+/saba/apache-tomcat-7.0.68/bin/startup.sh
+
+else echo "Tomcat is already running !!!"
+fi
