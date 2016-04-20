@@ -1,0 +1,19 @@
+#!/bin/bash
+#backup catalina.out
+
+TIMESTP=`date +%H%Y%S`
+
+kill -9 $(ps -ef|grep java|grep -v grep|awk '{print $2}')
+
+#add tomcat path
+cd /saba/apache-tomcat-7.0.68/logs/
+
+for i in `ls | grep catalina.out | grep -v .gz`
+
+do
+
+mv $i $i"_"$TIMESTP
+
+gzip $i"_"$TIMESTP
+
+done
