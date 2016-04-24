@@ -1,0 +1,38 @@
+#!/bin/bash
+TIMESTP=`date +%M%H%Y`
+process=`ps -ef|grep java|grep -v grep|awk '{print $2}'`
+if [ -z "$process" ]
+then
+echo "Tomcat is not running"
+
+else
+echo "Tomcat is running!!!"
+read -p "Do you want to restart? (yes/no)" reply
+
+choice=$(echo $reply|sed 's/\(.*\)/\L\1/')
+
+if [ "$choice" = 'yes' ]
+then
+
+#Kill old java process
+kill -9 $(ps -ef|grep java|grep -v grep |awk '{print $2}')
+
+#Take logs backup
+
+cd /saba/apache-tomcat-7.0.68/logs/
+mv catalina.out $catalina.out"_"$TIMESTP
+gzip $catalina.out"_"$TIMESTP
+
+#Starting tomcat
+echo "Welcome you selected yes, Starting tomcat";
+/saba/apache-tomcat-7.0.68/bin/startup.sh
+
+elif [ "$choice" = 'no'  ]
+then
+
+  echo "Good Bye";
+  exit 0
+else
+echo "invalid answer, type yes or no";
+fi
+fi
