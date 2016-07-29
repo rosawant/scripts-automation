@@ -1,3 +1,7 @@
+#Author : Roshan Sawant 
+#Script name: process_restart
+#Decription: this script will restart java process if its already not running
+
 #!/bin/bash
 TIMESTP=`date +%M%H%Y`
 process=`ps -ef|grep java|grep -v grep|awk '{print $2}'`
