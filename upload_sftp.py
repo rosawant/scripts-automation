@@ -19,7 +19,6 @@ for i,j in zip(files,file):
 for opfiles in glob.glob('/'):
 	authed_jira.add_attachment(issue,opfiles)
 
-authed_jira.add_comment(i.key,'Base reccon completed')
+authed_jira.add_comment(issue,'file uploaded')
 
 
-#print srv.get('/tmp/vodafone_modify_reconcile_test/outputstep1act/*', '/home/roshans/testing/' )
